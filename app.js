@@ -2,55 +2,25 @@
 
 const stages = [
   {
-    title: 'Building the foundations', status: 'Foundational study · 2023–2024',
-    narrative: 'Building a foundation in economic reasoning, quantitative methods, programming, and critical inquiry.',
+    title: 'Foundations', status: '2023–2024',
+    narrative: 'Intro micro and macro, calculus, programming, and research writing.',
     courses: [['Economics', 'Introductory microeconomics and macroeconomics'], ['MATH 141', 'Calculus 2'], ['COMP 202', 'Foundations of Programming'], ['WCOM 255', 'Research Essay & Rhetoric'], ['Critical inquiry', 'Philosophy and international development']],
-    note: 'Foundational subjects follow the supplied academic brief; exact terms are not specified for every course.'
+    note: ''
   },
   {
-    title: 'Exploring specializations', status: 'Selected completed coursework · 2024–2026',
-    narrative: 'Developing a deeper understanding of economic systems, financial institutions, and the role of communication in shaping how information is interpreted.',
+    title: 'Honours core', status: 'Completed · 2024–2026',
+    narrative: 'Honours macroeconomics and monetary economics, financial institutions, statistics, and communication theory.',
     courses: [['ECON 353 / 354', 'Macroeconomics: Honours 1 & 2'], ['ECON 459', 'Topics in Monetary Economics: Honours'], ['ECON 304', 'Financial Instruments & Institutions'], ['ECON 257D1/D2', 'Economic Statistics: Honours'], ['ECON 473 / 347', 'Income Distribution / Economics of Climate Change'], ['COMS 230 / 301', 'Communication and Democracy / Critical Theory']],
-    note: 'Also completed: ECON 460; COMS 210 and 491; ENGL 378. Stages describe intellectual development rather than exact course-by-course terms.'
+    note: 'Also completed: ECON 460; COMS 210 and 491; ENGL 378.'
   },
   {
-    title: 'Integrating economics, finance & communication', status: 'Listed for 2026–2027 · No final grades supplied',
-    narrative: 'Bringing together economic research, quantitative methods, and financial decision-making. These courses describe my academic direction, with completion status kept separate.',
+    title: 'Final year', status: 'In progress · 2026–2027',
+    narrative: 'Econometrics and advanced theory, plus the core finance sequence: accounting, corporate finance, investments, capital markets and derivatives.',
     courses: [['ECON 450 / 468', 'Advanced Economic Theory 1 / Econometrics 1: Honours'], ['MGCR 211', 'Introduction to Financial Accounting'], ['MGCR 341', 'Introduction to Finance'], ['FINE 342 / 441', 'Corporate Finance / Investment Management'], ['FINE 442 / 448', 'Capital Markets & Institutions / Financial Derivatives']],
-    note: 'These courses are listed in the supplied academic record for 2026–2027. They are not presented as completed expertise.'
+    note: ''
   }
 ];
 
-const disciplines = {
-  economics: {
-    title: 'Economics, with the context left in.',
-    foundation: 'Macroeconomic theory, monetary economics, institutions, and the history of economic thought help frame the questions I ask.',
-    connection: 'With finance: how macroeconomic conditions interact with markets and investment decisions. With communication: how institutions, media, and public narratives shape the interpretation of economic issues.',
-    coursework: 'Completed: ECON 353, 354, 459, 460, 473, and 347.',
-    relevance: 'Intersection: placing a financial result within the economic system that produced it.'
-  },
-  finance: {
-    title: 'Finance, beyond the price on the screen.',
-    foundation: 'Financial instruments and institutions provide a foundation for studying how capital moves and how financial decisions are made.',
-    connection: 'With economics: connecting market outcomes to broader conditions. With quantitative analysis: testing a portfolio claim. With communication: explaining assumptions, risks, and findings clearly.',
-    coursework: 'Completed: ECON 304. Listed for 2026–2027, without final grades: MGCR 211 and 341; FINE 342, 441, 442, and 448.',
-    relevance: 'Intersection: evaluating an investment thesis through its assumptions, evidence, and limitations.'
-  },
-  quantitative: {
-    title: 'Numbers, with a question attached.',
-    foundation: 'Economic statistics, calculus, and programming fundamentals support empirical research and structured analytical reasoning.',
-    connection: 'With economics: applying mathematical and statistical reasoning to economic questions. With finance: examining risk and return. With communication: making uncertainty and methods understandable.',
-    coursework: 'Completed foundations: ECON 257D1/D2, MATH 141, COMP 202. Listed for Fall 2026 without final grades: ECON 468 and ECON 450.',
-    relevance: 'Intersection: choosing measurements that address the question, then interpreting what they can actually establish.'
-  },
-  communication: {
-    title: 'Communication is part of the analysis.',
-    foundation: 'Critical theory, media studies, democracy, rhetoric, and research writing inform how I read arguments and construct my own.',
-    connection: 'With economics: examining institutions and public discourse. With finance: making complex findings accessible to different audiences. With quantitative work: communicating uncertainty without losing the substance.',
-    coursework: 'Completed: COMS 210, 230, 301, 491; ENGL 378; WCOM 255.',
-    relevance: 'Intersection: asking how information and narratives shape decision-making. Coursework is an academic foundation, rather than a claim of professional investor-relations experience.'
-  }
-};
 
 const navToggle = document.querySelector('.menu-toggle');
 const navLinks = document.querySelector('.navlinks');
@@ -76,7 +46,7 @@ function showStage(index) {
   stageTabs.forEach((tab, i) => { tab.setAttribute('aria-selected', String(i === index)); tab.tabIndex = i === index ? 0 : -1; });
   const panel = document.querySelector('#stage-panel');
   panel.setAttribute('aria-labelledby', `stage-${index}`);
-  panel.innerHTML = `<div><span class="status">${s.status}</span><h3>${s.title}</h3><p>${s.narrative}</p><p style="font-size:10px;margin-top:17px">${s.note}</p></div><ul class="course-list">${s.courses.map(c => `<li><span class="course-code">${c[0]}</span><span>${c[1]}</span></li>`).join('')}</ul>`;
+  panel.innerHTML = `<div><span class="status">${s.status}</span><h3>${s.title}</h3><p>${s.narrative}</p>${s.note ? `<p style="font-size:14px;margin-top:17px">${s.note}</p>` : ''}</div><ul class="course-list">${s.courses.map(c => `<li><span class="course-code">${c[0]}</span><span>${c[1]}</span></li>`).join('')}</ul>`;
 }
 stageTabs.forEach((tab, index) => {
   tab.addEventListener('click', () => showStage(index));
@@ -91,14 +61,6 @@ stageTabs.forEach((tab, index) => {
 });
 if (stageTabs.length) showStage(1);
 
-function showDiscipline(key) {
-  document.querySelectorAll('[data-node]').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.node === key)));
-  const detail = document.querySelector('#network-detail');
-  detail.innerHTML = `<span class="tag">A shared perspective</span><h3>A team spirit.</h3><p>Connecting ideas.<br>Working with people.<br>Delivering results.</p>`;
-}
-
-document.querySelectorAll('[data-node]').forEach(b => b.addEventListener('click', () => showDiscipline(b.dataset.node)));
-if (document.querySelector('#network-detail')) showDiscipline('economics');
 
 const betaSpecs = [
   {value:21.3, label:'Baseline BAB', context:'Baseline: all eligible stocks. Historical backtest; costs excluded.'},

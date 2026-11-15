@@ -87,3 +87,20 @@ body{background:var(--paper);color:var(--ink)}
 .hero-right{padding:0!important;overflow:hidden;background:#f4f7fa;box-shadow:12px 12px 0 #e7eef4;display:block;line-height:0;align-self:center}
 .hero-right img{display:block;width:100%;height:clamp(440px,43vw,610px);object-fit:cover;object-position:center 38%;border:0}
 @media(max-width:760px){.hero-right{max-width:500px;margin:22px auto 0}.hero-right img{height:clamp(350px,85vw,550px)}}
+
+.hero-venn{margin:0 0 25px;max-width:620px}.hero-venn svg{display:block;width:100%;height:auto}.hero-venn svg text{font-family:'EB Garamond',Georgia,serif;font-style:italic;font-size:28px;fill:#13376c}
+.proof-strip .proof-label{color:#1d9eb6;text-transform:uppercase;letter-spacing:.09em;font-size:11px}
+.art-photo{background:#f3f5f8;position:relative}.art-photo img{width:100%;height:100%;object-fit:cover}
+
+/* Photo essay: show the supplied image as a clean, edge-to-edge project cover. */
+.art-photo{padding:0;overflow:hidden;background:#e9edf2}
+.art-photo img{display:block;width:100%;height:100%;object-fit:cover;object-position:center center;transition:transform .45s ease}
+.research-card:hover .art-photo img{transform:scale(1.035)}
+@media (prefers-reduced-motion:reduce){.art-photo img{transition:none}.research-card:hover .art-photo img{transform:none}}
+
+/* Research story: four concise, readable sections */
+.research-story{max-width:850px;margin:3rem auto 3.5rem;display:grid;gap:2rem}
+.story-part{padding:0 0 1.5rem;border-bottom:1px solid rgba(19,55,108,.16)}
+.story-part h2{font-family:"EB Garamond",Georgia,serif;font-size:clamp(1.65rem,3vw,2.2rem);font-weight:500;line-height:1.2;margin:0 0 .65rem}
+.story-part p{font-family:"EB Garamond",Georgia,serif;font-size:clamp(1.15rem,1.65vw,1.35rem);line-height:1.65;max-width:72ch;margin:0}
+.story-note{font-family:"EB Garamond",Georgia,serif;font-size:1rem;line-height:1.5;opacity:.75;margin:0}
